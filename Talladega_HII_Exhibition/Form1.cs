@@ -56,9 +56,15 @@ namespace Talladega_HII_Exhibition
         }
 
         /* Clear text in textbox */
-        private void Clear_Click(object sender, EventArgs e)
+        private void Clear_Click_1(object sender, EventArgs e)
         {
             textBox1.Clear();
+            return;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
             return;
         }
     }
