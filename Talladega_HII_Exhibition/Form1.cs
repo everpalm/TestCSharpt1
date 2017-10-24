@@ -26,12 +26,13 @@ namespace Talladega_HII_Exhibition
             string line;
             int counter = 0;
                 // Open the selected file to read.
-               // System.IO.Stream fileStream = openFileDialog1.File.OpenRead();
-               
+                // System.IO.Stream fileStream = openFileDialog1.File.OpenRead();
+
+                /* Throw exception if there is no input file */   
                 try
                 {
                     if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                        System.Diagnostics.Debug.Print("測試訊息！！！Form1！！！");
+                        System.Diagnostics.Debug.Print("Exception: File access failed");
                 }
                 catch(Exception ex)
                 {
@@ -52,6 +53,13 @@ namespace Talladega_HII_Exhibition
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        /* Clear text in textbox */
+        private void Clear_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+            return;
         }
     }
 }
