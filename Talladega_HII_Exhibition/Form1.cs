@@ -18,6 +18,7 @@ namespace Talladega_HII_Exhibition
             InitializeComponent();
         }
 
+        /* Load text file and display contents in a textbox */
         private void button1_Click(object sender, EventArgs e)
         {
             openFileDialog1.InitialDirectory = @"c:\";
@@ -25,29 +26,49 @@ namespace Talladega_HII_Exhibition
             openFileDialog1.CheckFileExists = true;
             string line;
             int counter = 0;
-                // Open the selected file to read.
-                // System.IO.Stream fileStream = openFileDialog1.File.OpenRead();
 
-                /* Throw exception if there is no input file */   
-                try
-                {
-                    if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                        System.Diagnostics.Debug.Print("Exception: File access failed");
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
+            // Open the selected file to read.
+            // System.IO.Stream fileStream = openFileDialog1.File.OpenRead();
 
-                System.IO.StreamReader sr = new System.IO.StreamReader(openFileDialog1.FileName);
-                while ((line = sr.ReadLine()) != null)
+            /* Throw exception if there is no input file */
+            try
+            {
+                switch(openFileDialog1.ShowDialog())
                 {
-                    //System.Console.WriteLine(line);
-                    textBox1.AppendText(line + "\n");
+                    case DialogResult.OK:
+                        System.Diagnostics.Debug.Print("Exception: Press OK");
+                        break;
+                    case DialogResult.Cancel:
+                        System.Diagnostics.Debug.Print("Exception: Press Cancel");
+                        return;
+                    default:
+                        return;
+                }
+                //if (nResult == DialogResult.OK)
+                //{
+                //   System.Diagnostics.Debug.Print("Exception: Press OK");
+                //}
+                //else if (nResult == DialogResult.Cancel)
+                //{
+                //   System.Diagnostics.Debug.Print("Exception: Press Cancel");
+                //  return;
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            System.IO.StreamReader sr = new System.IO.StreamReader(openFileDialog1.FileName);
+            while ((line = sr.ReadLine()) != null)
+            {
+                //System.Console.WriteLine(line);
+                System.Diagnostics.Debug.Print(line);
+                textBox1.AppendText(line + "\n");
                     counter++;
                     System.Diagnostics.Debug.Print("counter = {0}", counter);
-                }
-                sr.Close();      
+            }
+            sr.Close();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -62,6 +83,7 @@ namespace Talladega_HII_Exhibition
             return;
         }
 
+        /* Close window */
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
